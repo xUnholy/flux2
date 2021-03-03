@@ -83,7 +83,6 @@ type githubFlags struct {
 	hostname    string
 	path        flags.SafeRelativePath
 	teams       []string
-	delete      bool
 	sshHostname string
 }
 
@@ -103,9 +102,6 @@ func init() {
 	bootstrapGitHubCmd.Flags().StringVar(&githubArgs.hostname, "hostname", git.GitHubDefaultHostname, "GitHub hostname")
 	bootstrapGitHubCmd.Flags().StringVar(&githubArgs.sshHostname, "ssh-hostname", "", "GitHub SSH hostname, to be used when the SSH host differs from the HTTPS one")
 	bootstrapGitHubCmd.Flags().Var(&githubArgs.path, "path", "path relative to the repository root, when specified the cluster sync will be scoped to this path")
-
-	bootstrapGitHubCmd.Flags().BoolVar(&githubArgs.delete, "delete", false, "delete repository (used for testing only)")
-	bootstrapGitHubCmd.Flags().MarkHidden("delete")
 
 	bootstrapCmd.AddCommand(bootstrapGitHubCmd)
 }
